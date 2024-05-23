@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Records - Job Application Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Define colors for alternating rows */
+        .color1 {
+            background-color: #f2f2f2;
+        }
+        
+        .color2 {
+            background-color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Application Tracker - View Records</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Fecha</th>
+            <th>Método de Postulación</th>
+            <th>Comentarios</th>
+            <th>Link</th>
+            <th>Nombre del Puesto</th>
+        </tr>
+        {% set counter = 0 %}
+        {% for application in applications %}
+        {% set counter = counter + 1 %}
+        <tr class="{% if (counter // 7) % 2 == 0 %}color1{% else %}color2{% endif %}">
+            <td>{{ application.id }}</td>
+            <td>{{ application.empresa }}</td>
+            <td>{{ application.fecha }}</td>
+            <td>{{ application.metodo_postulacion }}</td>
+            <td>{{ application.comentarios }}</td>
+            <td>{{ application.link }}</td>
+            <td>{{ application.nombre_puesto }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

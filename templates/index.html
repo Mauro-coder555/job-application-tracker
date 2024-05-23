@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #00fa9a; /* Verde agua */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 300px; /* Ajusta la altura máxima */
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 36px;
+            color: #007bff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        form {
+            flex: 2;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <h1 class="title">Job<br>Application<br>Tracker</h1>
+        </div>
+        <form action="/submit" method="post">
+            <label for="empresa">Empresa:</label><br>
+            <input type="text" id="empresa" name="empresa" required><br><br>
+
+            <label for="metodo_postulacion">Método de Postulación:</label><br>
+            <select id="metodo_postulacion" name="metodo_postulacion" required>
+                <option value="correo">Correo</option>
+                <option value="mensaje_en_linkedin">Mensaje en LinkedIn</option>
+                <option value="pagina_web">Página web</option>
+            </select><br><br>
+
+            <label for="comentarios">Comentarios:</label><br>
+            <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
+
+            <label for="link">Link:</label><br>
+            <input type="text" id="link" name="link"><br><br>
+
+            <label for="nombre_puesto">Nombre del Puesto:</label><br>
+            <input type="text" id="nombre_puesto" name="nombre_puesto" required><br><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
