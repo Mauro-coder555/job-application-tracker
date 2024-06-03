@@ -45,10 +45,13 @@
             <th>Link</th>
             <th>Nombre del Puesto</th>
         </tr>
-        {% set counter = 0 %}
         {% for application in applications %}
-        {% set counter = counter + 1 %}
-        <tr class="{% if (counter // 7) % 2 == 0 %}color1{% else %}color2{% endif %}">
+        {% if loop.index0 // rowsToColor % 2 == 0 %}
+        {% set row_color = 'color1' %}
+        {% else %}
+        {% set row_color = 'color2' %}
+        {% endif %}
+        <tr class="{{ row_color }}">
             <td>{{ application.id }}</td>
             <td>{{ application.empresa }}</td>
             <td>{{ application.fecha }}</td>
@@ -58,6 +61,7 @@
             <td>{{ application.nombre_puesto }}</td>
         </tr>
         {% endfor %}
+
     </table>
 </body>
 </html>
