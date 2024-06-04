@@ -24,18 +24,18 @@
 
         /* Define colors for alternating rows */
         .color1 {
-            background-color: #f2f2f2;
+            background-color: #ADD8E6; /* light blue */
         }
         
         .color2 {
-            background-color: #e6e6e6;
+            background-color: #FFD700; /* light orange */
         }
     </style>
 </head>
 <body>
     <h1>Job Application Tracker - View Records</h1>
 
-    <table>
+    <table id="applicationTable">
         <tr>
             <th>ID</th>
             <th>Empresa</th>
@@ -46,12 +46,7 @@
             <th>Nombre del Puesto</th>
         </tr>
         {% for application in applications %}
-        {% if loop.index0 // rowsToColor % 2 == 0 %}
-        {% set row_color = 'color1' %}
-        {% else %}
-        {% set row_color = 'color2' %}
-        {% endif %}
-        <tr class="{{ row_color }}">
+        <tr>
             <td>{{ application.id }}</td>
             <td>{{ application.empresa }}</td>
             <td>{{ application.fecha }}</td>
@@ -61,7 +56,29 @@
             <td>{{ application.nombre_puesto }}</td>
         </tr>
         {% endfor %}
-
     </table>
+
+    <script>
+        // Get all rows of the table except the header row
+        var rows = document.querySelectorAll("#applicationTable tr:not(:first-child)");
+        var currentDate = "";
+        var currentColor = "";
+
+        // Loop through each row
+        rows.forEach(function(row) {
+            // Get the value of date column for each row
+            var date = row.cells[2].textContent;
+            
+            // Check if it's a new date
+            if (date !== currentDate) {
+                // Change the color for the new date
+                currentColor = currentColor === "color1" ? "color2" : "color1";
+                currentDate = date;
+            }
+
+            // Apply the color to the row
+            row.classList.add(currentColor);
+        });
+    </script>
 </body>
 </html>
