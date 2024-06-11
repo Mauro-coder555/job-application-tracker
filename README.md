@@ -57,26 +57,26 @@ Acceder a la aplicación
 La aplicación estará disponible en http://localhost:5000.
 
 
-### Formulario de Registro:
-Llena el formulario con la información de la postulación.
-Haz clic en "Enviar" para guardar el registro.
+### Formulario de Registro
 
-### Visualizar Registros:
-Haz clic en "Ver Registros" para ver todas las postulaciones guardadas.
-Las filas están coloreadas alternadamente para una mejor visualización.
+Llena el formulario con la información de la postulación y haz clic en "Enviar" para guardar el registro. Si estás postulando a una empresa con un nombre similar al de una postulación previamente registrada, se te llevará a una pestaña con más información para que puedas confirmar si la nueva postulación es correcta o si se trata de una repetición.
 
-### Actualizar Respuesta:
-Haz clic en "Actualizar Respuesta" para cambiar el estado de respuesta de una postulación.
-Ingresa el ID de la postulación y selecciona si obtuviste respuesta ("SI" o "NO").
+### Visualizar Registros
 
-### Mostrar Gráficos:
+Haz clic en "Ver Registros" para ver todas las postulaciones guardadas. Las filas están coloreadas alternadamente para una mejor visualización.
+
+### Actualizar Respuesta
+
+Haz clic en "Actualizar Respuesta" para cambiar el estado de respuesta de una postulación. Ingresa el ID de la postulación y selecciona si obtuviste respuesta ("SI" o "NO").
+
+### Mostrar Gráficos
+
 Haz clic en "Mostrar Gráficos" para ver gráficos de las postulaciones.
 
-### Eliminar Registros:
+### Eliminar Registros
 
-Haz clic en "Eliminar Registro" y proporciona el ID del registro que deseas eliminar.
-Confirma la eliminación del registro.
+Haz clic en "Eliminar Registro" y proporciona el ID del registro que deseas eliminar. Confirma la eliminación del registro.
 
-### Actualizar métodos de postulación:
+### Actualizar métodos de postulación
 
-Puedes configurar los métodos de postulación acorde a tus necesidades. Algunos vienen cargados por defecto pero puedes agregar nuevos o eliminar existentes segun tu preferencia.
+Puedes configurar los métodos de postulación según tus necesidades mediante un recuadro y botones en esa sección. Algunos vienen cargados por defecto, pero puedes agregar nuevos o eliminar existentes según tu preferencia.
