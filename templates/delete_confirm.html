@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6347; /* Color rojo para el botón de eliminar */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #cc5145;
+        }
+
+        .cancel-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ccc;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .cancel-button:hover {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmar Eliminación</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>{{ application.id }}</td>
+            </tr>
+            <tr>
+                <th>Empresa</th>
+                <td>{{ application.empresa }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ application.fecha }}</td>
+            </tr>
+            <tr>
+                <th>Método de Postulación</th>
+                <td>{{ application.metodo_postulacion }}</td>
+            </tr>
+            <tr>
+                <th>Comentarios</th>
+                <td>{{ application.comentarios }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+                <td>{{ application.link }}</td>
+            </tr>
+            <tr>
+                <th>Nombre del Puesto</th>
+                <td>{{ application.nombre_puesto }}</td>
+            </tr>
+        </table>
+        <form action="/delete_confirm" method="post">
+            <input type="hidden" name="id" value="{{ application.id }}">
+            <input type="submit" value="Eliminar">
+        </form>
+        <a href="{{ url_for('index') }}" class="cancel-button">Cancelar</a>
+    </div>
+</body>
+</html>

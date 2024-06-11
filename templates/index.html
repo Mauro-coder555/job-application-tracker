@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
@@ -29,7 +30,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background-color: #00fa9a; /* Verde agua */
+            background-color: #00bcd4; 
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-right: 20px;
@@ -37,16 +38,17 @@
         }
 
         .logo {
-            max-width: 100%;
-            max-height: 300px; /* Ajusta la altura máxima */
+            max-width: 200%;
+            max-height: 300px;
             margin-bottom: 20px;
         }
 
         .title {
             font-size: 36px;
-            color: #007bff;
+            color: #fff;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
         }
 
         form {
@@ -75,16 +77,63 @@
         input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #00bcd4;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #0097a7;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-records-button {
+            background-color: #4caf50;
+        }
+
+        .update-response-button {
+            background-color: #ffc107;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+        }
+
+        .show-charts-button {
+            background-color: #2196f3;
+        }
+
+        .button:hover {
+            filter: brightness(0.8);
+        }
+
+        .method-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .method-buttons input[type="text"] {
+            flex: 1;
         }
     </style>
 </head>
@@ -92,19 +141,24 @@
     <div class="container">
         <div class="left-section">
             <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
-            <h1 class="title">Job<br>Application<br>Tracker</h1>
+            <h1 class="title">Job Application Tracker</h1>
         </div>
-        <form action="/submit" method="post">
+        <form action="/submit" method="post" onsubmit="standardizeMethod()">
             <label for="empresa">Empresa:</label><br>
             <input type="text" id="empresa" name="empresa" required><br><br>
 
             <label for="metodo_postulacion">Método de Postulación:</label><br>
-            <select id="metodo_postulacion" name="metodo_postulacion" required>
-                <option value="correo">Correo</option>
-                <option value="mensaje_en_linkedin">Mensaje en LinkedIn</option>
-                <option value="pagina_web">Página web</option>
-                <option value="postulacion_linkedin">Postulación en LinkedIn</option>
-            </select><br><br>
+            <div class="method-buttons">
+                <select id="metodo_postulacion" name="metodo_postulacion" required>
+                    <!-- Opciones se llenarán dinámicamente -->
+                </select>
+                <button type="button" onclick="removeSelectedMethod()">Eliminar</button>
+            </div><br>
+
+            <div class="method-buttons">
+                <input type="text" id="new_method" placeholder="Nuevo método de postulación">
+                <button type="button" onclick="addMethod()">Agregar</button>
+            </div><br><br>
 
             <label for="comentarios">Comentarios:</label><br>
             <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea><br><br>
@@ -116,7 +170,88 @@
             <input type="text" id="nombre_puesto" name="nombre_puesto" required><br><br>
 
             <input type="submit" value="Enviar">
+            
+            <button type="button" onclick="window.open('http://localhost:5000/view_records', '_blank')" class="button view-records-button"><i class="fas fa-eye"></i> Ver Registros</button>
+            <button type="button" onclick="window.open('http://localhost:5000/update_response', '_blank')" class="button update-response-button"><i class="fas fa-edit"></i> Actualizar Respuesta</button>
+            <button type="button" onclick="window.open('http://localhost:5000/show_charts', '_blank')" class="button show-charts-button"><i class="fas fa-chart-pie"></i> Mostrar Gráficos</button>           
+            <button type="button" onclick="window.open('http://localhost:5000/delete', '_blank')" class="button delete-button"><i class="fas fa-trash-alt"></i> Eliminar Registro</button>
+          
         </form>
     </div>
+
+    <script>
+        const defaultMethods = [
+            "Correo",
+            "Mensaje en LinkedIn",
+            "Página web",
+            "Postulación en LinkedIn",
+            "Portal de empleo",
+            "Publicación en LinkedIn"
+        ];
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            loadMethods();
+        });
+
+        function loadMethods() {
+            const select = document.getElementById('metodo_postulacion');
+            select.innerHTML = ''; // Limpiar opciones existentes
+
+            // Obtener métodos almacenados
+            let storedMethods = JSON.parse(localStorage.getItem('methods')) || [];
+            if (storedMethods.length === 0) {
+                storedMethods = defaultMethods;
+                localStorage.setItem('methods', JSON.stringify(storedMethods));
+            }
+
+            // Cargar métodos en el select
+            storedMethods.forEach(method => {
+                let option = document.createElement('option');
+                option.value = method;
+                option.textContent = method;
+                select.appendChild(option);
+            });
+        }
+
+        function addMethod() {
+            const newMethod = document.getElementById('new_method').value.trim();
+            if (newMethod === '') {
+                alert('Por favor ingrese un método de postulación válido.');
+                return;
+            }
+
+            let methods = JSON.parse(localStorage.getItem('methods')) || [];
+            if (!methods.includes(newMethod)) {
+                methods.push(newMethod);
+                localStorage.setItem('methods', JSON.stringify(methods));
+                loadMethods();
+            } else {
+                alert('El método de postulación ya existe.');
+            }
+
+            document.getElementById('new_method').value = ''; // Limpiar campo de texto
+        }
+
+        function removeSelectedMethod() {
+            const select = document.getElementById('metodo_postulacion');
+            const selectedValue = select.value;
+
+            // Eliminar del almacenamiento
+            let methods = JSON.parse(localStorage.getItem('methods')) || [];
+            methods = methods.filter(m => m !== selectedValue);
+
+            localStorage.setItem('methods', JSON.stringify(methods));
+            loadMethods();
+        }
+
+        function standardizeMethod() {
+            const select = document.getElementById('metodo_postulacion');
+            select.value = normalizeString(select.value);
+        }
+
+        function normalizeString(str) {
+            return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '_');
+        }
+    </script>
 </body>
 </html>

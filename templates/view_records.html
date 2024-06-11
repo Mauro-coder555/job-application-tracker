@@ -44,6 +44,7 @@
             <th>Comentarios</th>
             <th>Link</th>
             <th>Nombre del Puesto</th>
+            <th>Obtuvo Respuesta</th> 
         </tr>
         {% for application in applications %}
         <tr>
@@ -52,8 +53,9 @@
             <td>{{ application.fecha }}</td>
             <td>{{ application.metodo_postulacion }}</td>
             <td>{{ application.comentarios }}</td>
-            <td>{{ application.link }}</td>
+            <td><a href="{{ application.link }}" target="_blank">Link</a></td>
             <td>{{ application.nombre_puesto }}</td>
+            <td>{{ application.obtuvo_respuesta }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -8,11 +8,24 @@
 <body>
     <h1>Confirmar Empresa</h1>
     <p>El nombre de la empresa que ingresaste es similar a los siguientes nombres:</p>
-    <ul>
-        {% for company in similar_companies %}
-            <li>{{ company }}</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre de Empresa</th>
+                <th>Puesto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in similar_companies %}
+                <tr>
+                    <td>{{ company.id }}</td>
+                    <td>{{ company.empresa }}</td>
+                    <td>{{ company.nombre_puesto }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <p>¿Deseas continuar con la carga de la empresa <strong>{{ empresa }}</strong>?</p>
     <form action="{{ url_for('confirm') }}" method="post">
         <input type="hidden" name="empresa" value="{{ empresa }}">

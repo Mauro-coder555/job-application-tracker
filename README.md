@@ -7,6 +7,7 @@ Este proyecto es una aplicación web simple para rastrear las postulaciones de t
 | Directorio | Descripción |
 |---|---|
 | `app.py` | Archivo principal de la aplicación Flask |
+| `charts.py` | Archivo con lógica para graficar estado de postulaciones |
 | `db` | Directorio para almacenar la base de datos SQLite |
 | `Dockerfile` | Archivo Docker para construir la imagen |
 | `requirements.txt` | Archivo de requisitos de Python |
@@ -14,12 +15,13 @@ Este proyecto es una aplicación web simple para rastrear las postulaciones de t
 | `logo.png` | Imagen para fines estéticos |
 | `templates` | Directorio de plantillas HTML |
 | `index.html` | Plantilla HTML para el formulario de solicitudes |
-| `view_records.html` | Plantilla HTML para visualizar los registros |
+
 
 ## Características
 
-- Registrar postulaciones de trabajo con información como la empresa, método de postulación, comentarios, link y nombre del puesto.
+- Registrar postulaciones de trabajo con información como la empresa, método de postulación, comentarios, link, nombre del puesto y estado de respuesta.
 - Visualizar todas las aplicaciones registradas en una tabla.
+- Visualizar gráficas para analizar el recorrido y planificar estrategias acordes.
 
 # Tecnologías Utilizadas
 
@@ -30,6 +32,9 @@ Este proyecto es una aplicación web simple para rastrear las postulaciones de t
 - HTML/CSS: Para la estructura y el diseño de la interfaz de usuario.
 
 ## Instalación
+
+Para el uso de esta aplicación debe tener instalado Docker en su sistema.
+Puede hacerlo a través de la web oficial: https://docs.docker.com/get-docker/
 
 ### Clonar el repositorio
 
@@ -51,8 +56,27 @@ docker run -p 5000:5000 -v "$(pwd)/db:/app/db" job_application_tracker
 Acceder a la aplicación
 La aplicación estará disponible en http://localhost:5000.
 
-## Cargar una nueva postulacion
-Completa el formulario en la página principal y haz clic en "Enviar".
 
-## Ver registros de aplicaciones
-Accede a http://localhost:5000/view_records para ver todas las aplicaciones registradas en una tabla.
+### Formulario de Registro:
+Llena el formulario con la información de la postulación.
+Haz clic en "Enviar" para guardar el registro.
+
+### Visualizar Registros:
+Haz clic en "Ver Registros" para ver todas las postulaciones guardadas.
+Las filas están coloreadas alternadamente para una mejor visualización.
+
+### Actualizar Respuesta:
+Haz clic en "Actualizar Respuesta" para cambiar el estado de respuesta de una postulación.
+Ingresa el ID de la postulación y selecciona si obtuviste respuesta ("SI" o "NO").
+
+### Mostrar Gráficos:
+Haz clic en "Mostrar Gráficos" para ver gráficos de las postulaciones.
+
+### Eliminar Registros:
+
+Haz clic en "Eliminar Registro" y proporciona el ID del registro que deseas eliminar.
+Confirma la eliminación del registro.
+
+### Actualizar métodos de postulación:
+
+Puedes configurar los métodos de postulación acorde a tus necesidades. Algunos vienen cargados por defecto pero puedes agregar nuevos o eliminar existentes segun tu preferencia.
