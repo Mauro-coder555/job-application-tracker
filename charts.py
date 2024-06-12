@@ -80,7 +80,6 @@ def generate_charts(JobApplication):
     axs[1, 1].legend([bars1, bars2], ['SI RESPONDIÓ', 'NO RESPONDIÓ'])
 
     # Ajuste del diseño y exportación de la imagen
-    plt.tight_layout()
     plt.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
     canvas = FigureCanvas(fig)
     output = io.BytesIO()

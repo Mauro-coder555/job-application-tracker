@@ -39,13 +39,18 @@ with app.app_context():
 # Ruta principal para mostrar el formulario
 @app.route('/')
 def index():
-    return render_template('index.html')
+    with open('config/metodos_postulacion.txt', 'r', encoding='utf-8') as file:
+        metodos_postulacion = [line.strip().lower().replace(' ', '_').replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u') for line in file.readlines()]
+
+    return render_template('index.html', metodos_postulacion=metodos_postulacion)
 
 # Ruta para manejar el envío del formulario
 @app.route('/submit', methods=['POST'])
 def submit():
+    data = request.form.to_dict()
+    app.logger.debug(f'Received data: {data}')
     empresa = request.form['empresa']
-    metodo_postulacion = request.form['metodo_postulacion']
+    metodo_postulacion = request.form.get('metodo_postulacion')
     comentarios = request.form.get('comentarios')
     link = request.form.get('link')
     nombre_puesto = request.form['nombre_puesto']
@@ -162,4 +167,5 @@ def delete_confirm():
 
 # Iniciar la aplicación Flask
 if __name__ == '__main__':
+    app.debug = True
     app.run(host='0.0.0.0', port=5000)
