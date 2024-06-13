@@ -77,6 +77,6 @@ Haz clic en "Mostrar Gráficos" para ver gráficos de las postulaciones.
 
 Haz clic en "Eliminar Registro" y proporciona el ID del registro que deseas eliminar. Confirma la eliminación del registro.
 
-### Actualizar métodos de postulación
+### Configurar métodos de postulación
 
-Puedes configurar los métodos de postulación según tus necesidades mediante un recuadro y botones en esa sección. Algunos vienen cargados por defecto, pero puedes agregar nuevos o eliminar existentes según tu preferencia.
+Los métodos de postulación disponibles en la página principal se configuran mediante el archivo metodos_postulacion.txt ubicado en la carpeta config. En cada línea del archivo, escriba el nombre de un método de postulación para habilitarlo. El programa se encargará de mostrarlos en la aplicación de forma estandarizada (en minúsculas, sin tildes y con guiones bajos en lugar de espacios). Agregue o elimine líneas para gestionar la lista de métodos. Los cambios se aplican al re-construir la imagen y ejecutar nuevamente el contenedor.
