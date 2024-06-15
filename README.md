@@ -23,13 +23,17 @@ Este proyecto es una aplicación web simple para rastrear las postulaciones de t
 - Visualizar todas las aplicaciones registradas en una tabla.
 - Visualizar gráficas para analizar el recorrido y planificar estrategias acordes.
 
-# Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
-- Docker: Para la contenerización del proyecto y facilitar su despliegue.
-- Flask: Un framework de Python para crear aplicaciones web.
-- SQLAlchemy: Una biblioteca de Python que facilita el trabajo con bases de datos relacionales desde Python.
-- SQLite: Un sistema de gestión de bases de datos relacional incluido con Python.
-- HTML/CSS: Para la estructura y el diseño de la interfaz de usuario.
+- [![Docker](https://img.shields.io/badge/Docker-blue.svg?style=flat)](https://www.docker.com/) Para la contenerización del proyecto y facilitar su despliegue.
+
+- [![Flask](https://img.shields.io/badge/Flask-orange.svg?style=flat)](https://flask.palletsproject.com/) Un framework de Python para crear aplicaciones web.
+
+- [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-green.svg?style=flat)](https://www.sqlalchemy.org/) Una biblioteca de Python que facilita el trabajo con bases de datos relacionales desde Python.
+
+- [![SQLite](https://img.shields.io/badge/SQLite-red.svg?style=flat)](https://www.sqlite.org/) Un sistema de gestión de bases de datos relacional incluido con Python.
+
+- [![HTML5](https://img.shields.io/badge/HTML5-orange.svg?style=flat)](https://www.w3.org/TR/html5/) [![CSS3](https://img.shields.io/badge/CSS3-blue.svg?style=flat)](https://www.w3.org/TR/css3/) Para la estructura y el diseño de la interfaz de usuario.
 
 ## Instalación
 
