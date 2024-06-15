@@ -33,17 +33,23 @@ Este proyecto es una aplicación web simple para rastrear las postulaciones de t
 
 ## Instalación
 
-Para el uso de esta aplicación debe tener instalado Docker en su sistema.
+Para el uso de esta aplicación debe tener Docker instalado e iniciado en su sistema.
 Puede hacerlo a través de la web oficial: https://docs.docker.com/get-docker/
 
 ### Clonar el repositorio
 
+* En Windows: Abre la terminal de Git Bash haciendo clic derecho y seleccionando "Git Bash Here" dentro de la carpeta de tu preferencia.
+
+* En Linux: Abre la terminal convencional dentro de la carpeta de tu preferencia.
+
+#### Ejecuta los siguientes comandos:
+
 ```bash
-git clone https://github.com/tuusuario/job-application-tracker.git
+git clone https://github.com/Mauro-coder555/job-application-tracker.git
 cd job-application-tracker
 ```
 
-## Construir la imagen Docker
+## Construir la imagen Docker<a id="construir-imagen-docker"></a>
 ```bash
 docker build -t job_application_tracker .
 ```
@@ -53,7 +59,7 @@ docker run -p 5000:5000 -v "$(pwd)/db:/app/db" job_application_tracker
 ```
 ##  Uso
 
-Acceder a la aplicación
+### Acceder a la aplicación.
 La aplicación estará disponible en http://localhost:5000.
 
 
@@ -63,7 +69,7 @@ Llena el formulario con la información de la postulación y haz clic en "Enviar
 
 ### Visualizar Registros
 
-Haz clic en "Ver Registros" para ver todas las postulaciones guardadas. Las filas están coloreadas alternadamente para una mejor visualización.
+Haz clic en "Ver Registros" para ver todas las postulaciones guardadas. Las filas están coloreadas alternadamente para distinguir los registros consecutivos de dias distintos en los que se hizo una postulación.
 
 ### Actualizar Respuesta
 
@@ -79,4 +85,5 @@ Haz clic en "Eliminar Registro" y proporciona el ID del registro que deseas elim
 
 ### Configurar métodos de postulación
 
-Los métodos de postulación disponibles en la página principal se configuran mediante el archivo metodos_postulacion.txt ubicado en la carpeta config. En cada línea del archivo, escriba el nombre de un método de postulación para habilitarlo. El programa se encargará de mostrarlos en la aplicación de forma estandarizada (en minúsculas, sin tildes y con guiones bajos en lugar de espacios). Agregue o elimine líneas para gestionar la lista de métodos. Los cambios se aplican al re-construir la imagen y ejecutar nuevamente el contenedor.
+Los métodos de postulación disponibles en la página principal se configuran mediante el archivo metodos_postulacion.txt ubicado en la carpeta config. En cada línea del archivo, escriba el nombre de un método de postulación para habilitarlo. El programa se encargará de mostrarlos en la aplicación de forma estandarizada (en minúsculas, sin tildes y con guiones bajos en lugar de espacios). Agregue o elimine líneas para gestionar la lista de métodos. Los cambios se aplican al re-construir la imagen y ejecutar nuevamente el contenedor como fue indicado en esta [sección.](#construir-imagen-docker)
+
