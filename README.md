@@ -54,18 +54,28 @@ cd job-application-tracker
 ```
 
 ## Construir la imagen Docker<a id="construir-imagen-docker"></a>
+
 ```bash
-docker build -t job_application_tracker .
+make build
 ```
 ## Ejecutar el contenedor Docker
 ```bash
-docker run -p 5000:5000 -v "$(pwd)/db:/app/db" job_application_tracker
+make run
 ```
 ##  Uso
 
 ### Acceder a la aplicación.
 La aplicación estará disponible en http://localhost:5000.
 
+## Frenar el contenedor Docker
+```bash
+make stop
+```
+
+## Aclaración
+Luego de correr "make build" por primera vez, el uso general de la aplicación se resumiría en ejecutar "make run", entrar al enlace web, utilizar las funcionalidades, y al finalizar, ejecutar el comando "make stop".
+
+##
 
 ### Formulario de Registro
 
