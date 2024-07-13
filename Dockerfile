@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia el contenido de la carpeta actual en el contenedor
 COPY . .
 
+# Asegura que la base de datos y otros directorios tienen permisos adecuados
+RUN mkdir -p /app/db && chmod -R 755 /app/db
+
 # Expone el puerto en el que se ejecutará la aplicación
 EXPOSE 5000
 
